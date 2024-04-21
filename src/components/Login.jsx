@@ -6,6 +6,7 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_URL } from '../utils/constants';
 
 
 const Login = () => {
@@ -36,8 +37,8 @@ const Login = () => {
                 const user = userCredential.user;
                 console.log(user)
                 updateProfile(user, {
-                    displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/137785430?s=400&v=4"
-                  }).then(() => {
+                    displayName: name.current.value, photoURL: USER_URL})
+                    .then(() => {
                     // Profile updated!
                     const {uid,email,displayName,photoURL} = auth.currentUser;
                     dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}))
